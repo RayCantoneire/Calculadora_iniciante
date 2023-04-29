@@ -1,0 +1,119 @@
+# importando a biblioteca tkinter
+from tkinter import *
+from tkinter import ttk
+
+
+# cores
+color1 = '#0f0e0e'   # black
+color2 = '#feffff'   # white
+color3 = '#0f1869'   # blue
+color4 = '#8c9191'   # grey
+color5 = '#b3681e'   # orange
+
+
+# configuração da janela
+window = Tk()
+window.title('Calculadora')
+window.geometry('360x437')
+window.config(bg=color1)
+
+
+# configurações da parte do visor
+frame_scream = Frame(window, width=360, height=80, bg=color3)
+frame_scream.grid(row=0, column=0)
+
+
+# configurações da parte do botões
+frame_button = Frame(window, width=360, height=370, bg=color4)
+frame_button.grid(row=1, column=0)
+
+
+#Variavel todos valores
+todos_valores = ''
+
+
+#Configuração Label
+valor_texto = StringVar()
+
+
+#Criando função
+def entrar_valores(event):
+
+    global todos_valores
+
+    todos_valores = todos_valores + str(event)
+    
+    #Passando valor para a tela
+    valor_texto.set(todos_valores)
+
+
+#Função para calcular
+def calcular():
+    global todos_valores
+    resultado = eval(todos_valores)
+
+    valor_texto.set(str(resultado))
+
+
+#Função de limpar a tela
+def limpar_tela():
+    global todos_valores
+    todos_valores = ''
+    valor_texto.set('')
+
+
+#Configuração Label
+app_label = Label(frame_scream, textvariable=valor_texto, width=38, height=5, padx=7, relief=FLAT, anchor="e", justify=RIGHT, font=('Ivy 13'), bg=color3, fg=color2)
+app_label.place(x=0, y=0)
+
+
+# configurações dos botões
+button1 = Button(frame_button, command = limpar_tela, text='C', width=17, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button1.place(x=0, y=0)
+button2 = Button(frame_button, command = lambda: entrar_valores('%'), text='%', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button2.place(x=180, y=0)
+button3 = Button(frame_button, command = lambda: entrar_valores('/'), text='/', width=8, height=3, bg=color5, fg=color2, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button3.place(x=270, y=0)
+
+
+button4 = Button(frame_button, command = lambda: entrar_valores('7'), text='7', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button4.place(x=0, y=71)
+button5 = Button(frame_button, command = lambda: entrar_valores('8'), text='8', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button5.place(x=90, y=71)
+button6 = Button(frame_button, command = lambda: entrar_valores('9'), text='9', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button6.place(x=180, y=71)
+button7 = Button(frame_button, command = lambda: entrar_valores('*'), text='*', width=8, height=3, bg=color5, fg=color2, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button7.place(x=270, y=71)
+
+
+button8 = Button(frame_button, command = lambda: entrar_valores('4'), text='4', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button8.place(x=0, y=142)
+button9 = Button(frame_button, command = lambda: entrar_valores('5'), text='5', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button9.place(x=90, y=142)
+button10 = Button(frame_button, command = lambda: entrar_valores('6'), text='6', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button10.place(x=180, y=142)
+button11 = Button(frame_button, command = lambda: entrar_valores('-'), text='-', width=8, height=3, bg=color5, fg=color2, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button11.place(x=270, y=142)
+
+
+button12 = Button(frame_button, command = lambda: entrar_valores('1'), text='1', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button12.place(x=0, y=214)
+button13 = Button(frame_button, command = lambda: entrar_valores('2'), text='2', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button13.place(x=90, y=214)
+button14 = Button(frame_button, command = lambda: entrar_valores('3'), text='3', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button14.place(x=180, y=214)
+button15 = Button(frame_button, command = lambda: entrar_valores('+'), text='+', width=8, height=3, bg=color5, fg=color2, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button15.place(x=270, y=214)
+
+
+button16 = Button(frame_button, command = lambda: entrar_valores('0'), text='0', width=17, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button16.place(x=0, y=285)
+button17 = Button(frame_button, command = lambda: entrar_valores('.'), text='.', width=8, height=3, bg=color4, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button17.place(x=180, y=285)
+button18 = Button(frame_button, command = calcular, text='=', width=8, height=3, bg=color5, fg=color2, font=('Ivy 13 bold'), relief=RAISED, overrelief=RIDGE)
+button18.place(x=270, y=285)
+
+
+
+
+window.mainloop()
